@@ -1,0 +1,144 @@
+{% extends "payments/base.html" %}
+
+{% block content %}
+
+<h2>
+    👤 {{ member.jina }}
+</h2>
+
+
+<div class="card mb-4">
+
+<div class="card-body">
+
+<p>
+<strong>Simu:</strong>
+{{ member.simu }}
+</p>
+
+<p>
+<strong>Eneo:</strong>
+{{ member.eneo }}
+</p>
+
+<p>
+<strong>Anachotakiwa:</strong>
+{{ member.kiasi_anachotakiwa|floatformat:2 }}
+</p>
+
+<p>
+<strong>Alicholipa:</strong>
+{{ member.jumla_ya_malipo|floatformat:2 }}
+</p>
+
+<p>
+<strong>Deni:</strong>
+{{ member.deni|floatformat:2 }}
+</p>
+
+<p>
+<strong>Status:</strong>
+{{ member.status }}
+</p>
+
+
+<a
+    href="{% url 'payment_create' %}"
+    class="btn btn-success"
+>
+    💰 Ongeza Malipo
+</a>
+
+
+<a
+    href="{% url 'download_member_excel' member.id %}"
+    class="btn btn-warning"
+>
+    📊 Download Excel
+</a>
+
+</div>
+
+</div>
+
+
+<h4>
+    Historia ya Malipo
+</h4>
+
+
+<div class="table-responsive">
+
+<table class="table table-bordered">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>Tarehe</th>
+
+<th>Kiasi</th>
+
+<th>Njia</th>
+
+<th>Transaction</th>
+
+<th>Maelezo</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+{% for payment in payments %}
+
+<tr>
+
+<td>
+{{ payment.tarehe|date:"d/m/Y H:i" }}
+</td>
+
+<td>
+{{ payment.kiasi|floatformat:2 }}
+</td>
+
+<td>
+{{ payment.get_payment_method_display }}
+</td>
+
+<td>
+{{ payment.transaction_number }}
+</td>
+
+<td>
+{{ payment.maelezo }}
+</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td
+    colspan="5"
+    class="text-center"
+>
+
+Hakuna malipo.
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "payments/base.html" %}
+
+{% block content %}
+
+<h2>
+    ➕ Ongeza Mwanachama
+</h2>
+
+<form method="post">
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button
+        type="submit"
+        class="btn btn-primary"
+    >
+        Hifadhi
+    </button>
+
+    <a
+        href="{% url 'member_list' %}"
+        class="btn btn-secondary"
+    >
+        Rudi
+    </a>
+
+</form>
+
+{% endblock %}

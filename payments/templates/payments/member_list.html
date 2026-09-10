@@ -1,0 +1,152 @@
+{% extends "payments/base.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between mb-3">
+
+    <h2>
+        👥 Wanachama
+    </h2>
+
+    <div>
+
+        <a
+            href="{% url 'member_create' %}"
+            class="btn btn-primary"
+        >
+            ➕ Ongeza
+        </a>
+
+        <a
+            href="{% url 'import_excel' %}"
+            class="btn btn-warning"
+        >
+            📥 Import Excel
+        </a>
+
+    </div>
+
+</div>
+
+
+<div class="table-responsive">
+
+<table class="table table-bordered table-hover">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>#</th>
+
+<th>Jina</th>
+
+<th>Simu</th>
+
+<th>Eneo</th>
+
+<th>Anachotakiwa</th>
+
+<th>Alicholipa</th>
+
+<th>Deni</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+{% for member in members %}
+
+<tr>
+
+<td>
+    {{ forloop.counter }}
+</td>
+
+<td>
+    {{ member.jina }}
+</td>
+
+<td>
+    {{ member.simu }}
+</td>
+
+<td>
+    {{ member.eneo }}
+</td>
+
+<td>
+    {{ member.kiasi_anachotakiwa|floatformat:2 }}
+</td>
+
+<td>
+    {{ member.jumla_ya_malipo|floatformat:2 }}
+</td>
+
+<td>
+    {{ member.deni|floatformat:2 }}
+</td>
+
+<td>
+
+{% if member.deni <= 0 %}
+
+<span class="badge bg-success">
+    AMEMALIZA
+</span>
+
+{% else %}
+
+<span class="badge bg-danger">
+    ANA DENI
+</span>
+
+{% endif %}
+
+</td>
+
+
+<td>
+
+<a
+    href="{% url 'member_detail' member.id %}"
+    class="btn btn-sm btn-primary"
+>
+    Angalia
+</a>
+
+</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td
+    colspan="9"
+    class="text-center"
+>
+
+Hakuna wanachama.
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+{% endblock %}

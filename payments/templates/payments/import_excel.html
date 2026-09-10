@@ -1,0 +1,81 @@
+{% extends "payments/base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    📥 Ingiza Excel
+</h2>
+
+
+<div class="card shadow-sm">
+
+<div class="card-body">
+
+<form
+    method="post"
+    enctype="multipart/form-data"
+>
+
+    {% csrf_token %}
+
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Excel File
+        </label>
+
+        {{ form.excel_file }}
+
+        {% if form.excel_file.errors %}
+
+            <div class="text-danger">
+
+                {{ form.excel_file.errors }}
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <div class="mb-3">
+
+        <label class="form-label">
+
+            Kiasi Anachotakiwa
+
+        </label>
+
+        {{ form.kiasi_anachotakiwa }}
+
+    </div>
+
+
+    <button
+        type="submit"
+        class="btn btn-primary"
+    >
+
+        📥 Import Excel
+
+    </button>
+
+
+    <a
+        href="{% url 'dashboard' %}"
+        class="btn btn-secondary"
+    >
+
+        Rudi Dashboard
+
+    </a>
+
+</form>
+
+</div>
+
+</div>
+
+{% endblock %}

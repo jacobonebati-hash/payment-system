@@ -1,0 +1,119 @@
+{% extends "payments/base.html" %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-1">📥 Ingiza Excel</h2>
+            <p class="text-muted mb-0">
+                Ingiza taarifa za wanachama na malipo kutoka kwenye Excel.
+            </p>
+        </div>
+
+        <a href="{% url 'dashboard' %}" class="btn btn-secondary">
+            ← Dashboard
+        </a>
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-7">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body p-4">
+
+                    <h5 class="mb-4">
+                        📊 Upload Excel File
+                    </h5>
+
+                    <form method="post" enctype="multipart/form-data">
+
+                        {% csrf_token %}
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-bold">
+                                Excel File
+                            </label>
+
+                            {{ form.excel_file }}
+
+                            {% if form.excel_file.errors %}
+                                <div class="text-danger mt-2">
+                                    {{ form.excel_file.errors }}
+                                </div>
+                            {% endif %}
+
+                            <div class="form-text">
+                                Tumia Excel yenye extension
+                                <strong>.xlsx</strong>
+                            </div>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-bold">
+                                Kiasi Anachotakiwa Kulipa
+                            </label>
+
+                            {{ form.kiasi_anachotakiwa }}
+
+                            {% if form.kiasi_anachotakiwa.errors %}
+                                <div class="text-danger mt-2">
+                                    {{ form.kiasi_anachotakiwa.errors }}
+                                </div>
+                            {% endif %}
+
+                            <div class="form-text">
+                                Mfano: 10000
+                            </div>
+
+                        </div>
+
+                        <div class="alert alert-info">
+
+                            <strong>ℹ️ Muhimu</strong>
+
+                            <p class="mb-0 mt-2">
+                                Mfumo utasoma majina, namba za simu na
+                                taarifa za malipo kutoka kwenye Excel
+                                na kuzihifadhi kwenye mfumo.
+                            </p>
+
+                        </div>
+
+                        <div class="d-flex gap-2">
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                            >
+                                📥 Import Excel
+                            </button>
+
+                            <a
+                                href="{% url 'member_list' %}"
+                                class="btn btn-outline-secondary"
+                            >
+                                Ghairi
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

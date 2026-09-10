@@ -1,0 +1,146 @@
+{% extends "payments/base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    📊 Dashboard
+</h2>
+
+
+<div class="row g-3">
+
+    <div class="col-md-3">
+
+        <div class="card shadow-sm">
+
+            <div class="card-body">
+
+                <h6>Wanachama</h6>
+
+                <h2>
+                    {{ total_members }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-3">
+
+        <div class="card shadow-sm">
+
+            <div class="card-body">
+
+                <h6>Jumla Inayotakiwa</h6>
+
+                <h2>
+                    {{ total_required|floatformat:2 }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-3">
+
+        <div class="card shadow-sm">
+
+            <div class="card-body">
+
+                <h6>Jumla Iliyolipwa</h6>
+
+                <h2>
+                    {{ total_paid|floatformat:2 }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-3">
+
+        <div class="card shadow-sm">
+
+            <div class="card-body">
+
+                <h6>Jumla ya Madeni</h6>
+
+                <h2>
+                    {{ total_debt|floatformat:2 }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="mt-4">
+
+    <a
+        href="{% url 'member_create' %}"
+        class="btn btn-primary"
+    >
+        ➕ Ongeza Mwanachama
+    </a>
+
+
+    <a
+        href="{% url 'payment_create' %}"
+        class="btn btn-success"
+    >
+        💰 Ongeza Malipo
+    </a>
+
+
+    <a
+        href="{% url 'import_excel' %}"
+        class="btn btn-warning"
+    >
+        📥 Ingiza Excel
+    </a>
+
+
+    <a
+        href="{% url 'export_excel' %}"
+        class="btn btn-dark"
+    >
+        📤 Export Excel
+    </a>
+
+</div>
+
+
+<div class="mt-4">
+
+    <h4>Muhtasari</h4>
+
+    <p>
+        Waliomaliza:
+        <strong>
+            {{ completed_members }}
+        </strong>
+    </p>
+
+    <p>
+        Wenye deni:
+        <strong>
+            {{ debt_members }}
+        </strong>
+    </p>
+
+</div>
+
+{% endblock %}
